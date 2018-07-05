@@ -1,0 +1,1 @@
+enum ScreenEnum { QUIZES, LOGIN}
