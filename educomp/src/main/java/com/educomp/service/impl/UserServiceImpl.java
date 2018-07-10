@@ -5,14 +5,12 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.educomp.db.dao.IUserDao;
 import com.educomp.model.User;
 import com.educomp.service.IUserService;
-import com.educomp.web.exception.MyResourceNotFoundException;
 
 @Service
 @Transactional
@@ -69,10 +67,10 @@ public class UserServiceImpl implements IUserService {
 
 
     @Override
-    public User loadUserByUsername(String emailAddress) throws UsernameNotFoundException {
+    public User loadUserByUsername(String emailAddress) throws Exception {
     	User user = userDao.findByemailAddress(emailAddress);
         if (user == null) {
-            throw new UsernameNotFoundException(emailAddress);
+            throw new Exception(emailAddress);
         }
         return user;
     }
