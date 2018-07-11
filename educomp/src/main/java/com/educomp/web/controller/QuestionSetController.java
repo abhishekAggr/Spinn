@@ -102,6 +102,8 @@ public class QuestionSetController {
 		
 		questionSetService.update(savedQuestionSet);
 		
-		return new ArrayList<QuestionSet>();
+		List<QuestionSet> nextQuestionSet = this.getNextQuestion(area, level, device, userId, response);
+		
+		return nextQuestionSet;
     }
 }
