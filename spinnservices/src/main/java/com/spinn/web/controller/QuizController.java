@@ -33,9 +33,15 @@ public class QuizController {
 //	public List<QuestionSet> findById(@PathVariable("area") final String area, final HttpServletResponse response) {
 //		final List<QuestionSet> resourceByArea = RestPreconditions.checkFound(questionSetService.findQuestionSetByArea(area));
 //		return resourceByArea;
-//
 //	}
-//	
+	
+	@GetMapping( "/level/{level}")
+	@ResponseBody
+	public List<QuestionSet> findByLevel(@PathVariable("level") final String level, final HttpServletResponse response) {
+		final List<QuestionSet> resourceByLevel = RestPreconditions.checkFound(questionSetService.findQuestionSetByLevel(level));
+		return resourceByLevel;
+	}
+	
 //	@GetMapping( "/notattemptedbyuser/{user}")
 //	@ResponseBody
 //	public List<QuestionSet> findByUserNotAttempted(@PathVariable("user") final String user, final HttpServletResponse response) {

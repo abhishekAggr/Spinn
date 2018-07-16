@@ -21,7 +21,12 @@ public class QuestionSetServiceImpl implements IQuestionSetService {
 	
     @Override
 	public List<QuestionSet> findQuestionSetByArea(String area) {
-    	return questionSetDao.findQuestionSetByArea(area);
+    	return questionSetDao.findQuestionSetByAreaList(area);
+    }
+    
+    @Override
+	public List<QuestionSet> findQuestionSetByLevel(String level) {
+    	return questionSetDao.findQuestionSetByLevel(level);
     }
 	
     @Override

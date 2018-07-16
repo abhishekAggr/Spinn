@@ -8,6 +8,8 @@ public interface IQuestionSetService extends IBaseService<QuestionSet> {
 
 	List<QuestionSet> findQuestionSetByArea(String area);
 	
+	public List<QuestionSet> findQuestionSetByLevel(String level);
+	
 	List<QuestionSet> findQuestionSetByNotAttemptedUser(String user);
 	
 	List<QuestionSet> findQuestionSetByAreaAndNotAttemptedUser(String area, String user);

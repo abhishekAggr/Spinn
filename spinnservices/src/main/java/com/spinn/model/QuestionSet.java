@@ -25,9 +25,6 @@ public class QuestionSet {
     @ApiModelProperty(notes = "QuesDesc", required = false)
     private String quesDesc;
     
-    @ApiModelProperty(notes = "Area", required = true)
-    private String area;
-    
     @ApiModelProperty(notes = "Level", required = true)
     private String level;
     
@@ -53,17 +50,18 @@ public class QuestionSet {
     private String answerRef;
     
     private List<Attempt> attempt;
+    
+    private List<AreaList> arealist;
 
     public QuestionSet() {}
  
     @PersistenceConstructor
-    public QuestionSet(String id, String quesDesc, String area, String level,
+    public QuestionSet(String id, String quesDesc, String level,
 			String device, String option1, String option2, String option3,
-			String option4, String answer, String answerRef, List<Attempt> attempt) {
+			String option4, String answer, String answerRef, List<Attempt> attempt, List<AreaList> arealist) {
 		super();
 		this.id = id;
 		this.quesDesc = quesDesc;
-		this.area = area;
 		this.level = level;
 		this.device = device;
 		this.option1 = option1;
@@ -73,6 +71,7 @@ public class QuestionSet {
 		this.answer = answer;
 		this.answerRef = answerRef;
 		this.attempt = attempt;
+		this.arealist = arealist;
 	}
 
 	/**
@@ -101,20 +100,6 @@ public class QuestionSet {
 	 */
 	public void setQuesDesc(String quesDesc) {
 		this.quesDesc = quesDesc;
-	}
-
-	/**
-	 * @return the area
-	 */
-	public String getArea() {
-		return area;
-	}
-
-	/**
-	 * @param area the area to set
-	 */
-	public void setArea(String area) {
-		this.area = area;
 	}
 
 	/**
@@ -241,6 +226,20 @@ public class QuestionSet {
 	 */
 	public void setAttempt(List<Attempt> attempt) {
 		this.attempt = attempt;
+	}
+
+	/**
+	 * @return the areaList
+	 */
+	public List<AreaList> getArealist() {
+		return arealist;
+	}
+
+	/**
+	 * @param areaList the areaList to set
+	 */
+	public void setArealist(List<AreaList> arealist) {
+		this.arealist = arealist;
 	}
 
 }
