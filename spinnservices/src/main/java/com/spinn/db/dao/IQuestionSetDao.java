@@ -21,7 +21,7 @@ public interface IQuestionSetDao extends MongoRepository<QuestionSet, String> {
 	@Query("{ 'arealist.area' : ?0 , 'attempt.userid' : { $nin: [?1] }}")
 	List<QuestionSet> findQuestionSetByAreaAndNotAttemptedUser(String area, String user);
 
-	@Query("{ 'arealist.area' : { $in: [?0] }}, 'level' : ?1, 'device' : ?2, 'attempt.userid' : { $nin: [?3] }}")
+	@Query("{'arealist.area' : { $in: [?0] }, 'level' : ?1, 'device' : ?2, 'attempt.userid' : { $nin: [?3] }}")
 	List<QuestionSet> findQuestionByAreaLevelDeviceNotAttemptedByUser(String area, String level,String device, String user);
 	
 }

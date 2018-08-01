@@ -109,7 +109,7 @@ public class QuizController {
 		
 		questionSetService.update(savedQuestionSet);
 		
-		List<QuestionSet> nextQuestionSet = this.getQuestion(area, level, device, user, response);
+		List<QuestionSet> nextQuestionSet = this.getQuestion(user, area, level, device, response);
 		
 		return nextQuestionSet;
     }
