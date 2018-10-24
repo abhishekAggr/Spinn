@@ -1,0 +1,219 @@
+---
+swagger: "2.0"
+info:
+  description: "A sample api for user management"
+  version: "1.0.0"
+  title: "User management"
+  termsOfService: ""
+  contact:
+    email: "sandeepk@interrait.com"
+  license:
+    name: ""
+basePath: "/api"
+tags:
+- name: "user"
+  description: "User management portal"
+  externalDocs:
+    description: "Find out more"
+    url: "http://swagger.io"
+schemes:
+- "http"
+- "https"
+paths:
+  /register:
+    post:
+      tags:
+      - "user register"
+      summary: "Register a new user."
+      description: ""
+      operationId: "registerUser"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "User's details to be registered"
+        required: true
+        schema:
+          $ref: "#/definitions/register"
+      responses:
+        200:
+          description: "User Registered successfully"
+        405:
+          description: "Invalid input"
+        500:
+          description: "Internal server error"
+      x-swagger-router-controller: "UserRegister"
+  /update/status:
+    post:
+      tags:
+      - "update status"
+      summary: "Update status of the user."
+      description: ""
+      operationId: "updateUser"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "User's otp"
+        required: true
+        schema:
+          $ref: "#/definitions/updateStatus"
+      responses:
+        200:
+          description: "User Registered successfully"
+        405:
+          description: "Invalid input"
+        500:
+          description: "Internal server error"
+      x-swagger-router-controller: "UpdateStatus"
+  /update/profile:
+    post:
+      tags:
+      - "update profile"
+      summary: "Update profile of the user."
+      description: ""
+      operationId: "updateProfile"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "User details"
+        required: true
+        schema:
+          $ref: "#/definitions/updateProfile"
+      responses:
+        200:
+          description: "User Registered successfully"
+        405:
+          description: "Invalid input"
+        500:
+          description: "Internal server error"
+      x-swagger-router-controller: "UpdateProfile"
+  /update/photo/{username}:
+    post:
+      tags:
+      - "user profile"
+      summary: "uploads an image"
+      description: ""
+      operationId: "uploadFile"
+      consumes:
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "username"
+        required: true
+        type: "string"
+      - name: "file"
+        in: "formData"
+        description: "file to upload"
+        required: true
+        type: "file"
+      responses:
+        200:
+          description: "successful operation"
+        500:
+          description: "Internal server error"
+      x-swagger-router-controller: "UserProfile"
+  /user/login:
+    get:
+      tags:
+      - "user login"
+      summary: "Logs user into the system"
+      description: ""
+      operationId: "loginUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "query"
+        description: "The user name for login"
+        required: true
+        type: "string"
+      - name: "password"
+        in: "query"
+        description: "The password for login in clear text"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+        500:
+          description: "Internal server error"
+          schema:
+            type: "string"
+      x-swagger-router-controller: "UserLogin"
+  /delete/user/{username}:
+    delete:
+      tags:
+      - "delete User"
+      summary: "Delete user"
+      description: "This can only be done by the logged in user."
+      operationId: "deleteUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "The name that needs to be deleted"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "Invalid username supplied"
+        404:
+          description: "User not found"
+      x-swagger-router-controller: "DeleteUser"
+definitions:
+  register:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+      password:
+        type: "string"
+  updateStatus:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+      otp:
+        type: "string"
+  updateProfile:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      password:
+        type: "string"
+      sex:
+        type: "string"
+      DOB:
+        type: "string"
+      work_area:
+        type: "string"

@@ -1,0 +1,1299 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "",
+    "version": "1.0.0",
+    "title": "spinn services"
+  },
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "user",
+      "description": "User Management"
+    },
+    {
+      "name": "skill",
+      "description": "Skill Management"
+    },
+    {
+      "name": "Question",
+      "description": "Content Management"
+    },
+    {
+      "name": "Paper",
+      "description": "Paper Management"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "paths": {
+    "/register": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Register a new user.",
+        "description": "",
+        "operationId": "registerUser",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User's details to be registered",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/register"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User Registered successfully"
+          },
+          "405": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/generateOtp/{userId}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Generates OTP for new user.",
+        "description": "",
+        "operationId": "generateOtp",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "description": "Registered UserId only.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User Registered successfully"
+          },
+          "405": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/updateStatus": {
+      "put": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Update status of the user.",
+        "description": "",
+        "operationId": "updateUser",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User's otp",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/updateStatus"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User Registered successfully"
+          },
+          "405": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/updateProfile/{userId}": {
+      "put": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Update profile of the user.",
+        "description": "",
+        "operationId": "updateProfile",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User details",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/updateProfile"
+            }
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "description": "Enter UserId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User Registered successfully"
+          },
+          "405": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/addHomeAddress/{userId}": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Update home address of the user.",
+        "description": "",
+        "operationId": "updateAddress",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User Address",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/updateHomeAddress"
+            }
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "405": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/addOfficeAddress/{userId}": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Update office address of the user.",
+        "description": "",
+        "operationId": "updateofficeAddress",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User's Office Address",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/updateOfficeAddress"
+            }
+          },
+          {
+            "in": "path",
+            "name": "userId",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "405": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/updatePhoto/{userId}": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "uploads an image",
+        "description": "",
+        "operationId": "uploadFile",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "userId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "profilePic",
+            "in": "formData",
+            "description": "file to upload",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/login/{userId}/{password}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Logs in user to view the profile.",
+        "description": "",
+        "operationId": "login",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "description": "User Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "password",
+            "description": "password",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "405": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/deleteUser/{userId}": {
+      "delete": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Delete user",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "deleteUser",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "The name that needs to be deleted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Invalid userId supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/addSkill/{userId}": {
+      "post": {
+        "tags": [
+          "skill"
+        ],
+        "summary": "Add skills",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "addSkill",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "UserId whose skills are to be added.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Skills to be added.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/addSkill"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Invalid userId supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/viewSkill/{userId}": {
+      "get": {
+        "tags": [
+          "skill"
+        ],
+        "summary": "View skills",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "viewSkill",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "UserId whose skills are to be viewed.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Invalid userId supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/updateSkill/{userId}/{skillId}": {
+      "put": {
+        "tags": [
+          "skill"
+        ],
+        "summary": "Update skills",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "updateSkill",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "UserId whose skills are to be added.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "skillId",
+            "in": "path",
+            "description": "skill to be updated.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Skills to be added.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/addSkill"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Invalid userId supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/deleteSkill/{userId}/{skillId}": {
+      "delete": {
+        "tags": [
+          "skill"
+        ],
+        "summary": "Remove skill by id",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "removeSkill",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "UserId whose skill is to be removed.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "skillId",
+            "in": "path",
+            "description": "SkillId to be removed.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Invalid userId supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/addQuestion": {
+      "post": {
+        "tags": [
+          "Question"
+        ],
+        "summary": "Add questions",
+        "description": "Add questions.",
+        "operationId": "addQuestion",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Skills to be added.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/addQuestion"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/viewQuestion/{questionId}": {
+      "get": {
+        "tags": [
+          "Question"
+        ],
+        "summary": "View questions",
+        "description": "View questions.",
+        "operationId": "viewQuestion",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "questionId",
+            "description": "Question Id.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/updtaeQuestion/{questionId}": {
+      "put": {
+        "tags": [
+          "Question"
+        ],
+        "summary": "Modify questions",
+        "description": "Modify question by Id.",
+        "operationId": "modifyQuestion",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "question details to be modified.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/addQuestion"
+            }
+          },
+          {
+            "name": "questionId",
+            "in": "path",
+            "description": "question Id to be modified.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/searchQuestion/{userId}/{skillId}": {
+      "get": {
+        "tags": [
+          "Question"
+        ],
+        "summary": "Search questions",
+        "description": "Search questions.",
+        "operationId": "searchQuestion",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User ID.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "skillId",
+            "in": "path",
+            "description": "Skill ID.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/attemptQuestion/{userId}/{questionId}/{answer}": {
+      "get": {
+        "tags": [
+          "Question"
+        ],
+        "summary": "Attempt questions",
+        "description": "Attempt questions",
+        "operationId": "attemptQuestion",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User ID.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "questionId",
+            "in": "path",
+            "description": "Question ID.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "answer",
+            "in": "path",
+            "description": "Answer.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/deleteQuestion/{questionId}": {
+      "delete": {
+        "tags": [
+          "Question"
+        ],
+        "summary": "Remove questions",
+        "description": "Remove questions.",
+        "operationId": "removeQuestion",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "questionId",
+            "in": "path",
+            "description": "question to be removed.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/addPaper/{userId}/{skillId}": {
+      "post": {
+        "tags": [
+          "Paper"
+        ],
+        "summary": "Add new paper",
+        "description": "Add new paper",
+        "operationId": "addPaper",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "skillId",
+            "in": "path",
+            "description": "skill to be added in paper.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Paper description",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/addPaper"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/editPaper/{paperId}": {
+      "put": {
+        "tags": [
+          "Paper"
+        ],
+        "summary": "Edit paper",
+        "description": "Edit paper",
+        "operationId": "editPaper",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "paperId",
+            "in": "path",
+            "description": "Paper Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Paper description",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/addPaper"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/deletePaper/{paperId}": {
+      "delete": {
+        "tags": [
+          "Paper"
+        ],
+        "summary": "Delete Paper",
+        "description": "Delete Paper by Id",
+        "operationId": "deletePaper",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "paperId",
+            "in": "path",
+            "description": "paper to be deleted.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/listPaper": {
+      "get": {
+        "tags": [
+          "Paper"
+        ],
+        "summary": "View all the Papers",
+        "description": "View all the Papers",
+        "operationId": "viewPaper",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/viewPaperById/{paperId}": {
+      "get": {
+        "tags": [
+          "Paper"
+        ],
+        "summary": "View Paper by Id",
+        "description": "View Paper by Id",
+        "operationId": "viewPaperById",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "paperId",
+            "in": "path",
+            "description": "paper to be viewed.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/addQuestionToPaper/{paperId}/{questionId}": {
+      "post": {
+        "tags": [
+          "Paper"
+        ],
+        "summary": "Add question to paper",
+        "description": "Add question to paper",
+        "operationId": "addQuestionToPaper",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "paperId",
+            "in": "path",
+            "description": "paper Id.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "questionId",
+            "in": "path",
+            "description": "Question to be added.",
+            "required": true,
+            "type": "string"
+          }          
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/listQuestionFromPaper/{paperId}": {
+      "get": {
+        "tags": [
+          "Paper"
+        ],
+        "summary": "List questions from paper",
+        "description": "List questions from paper",
+        "operationId": "listQuestionFromPaper",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "paperId",
+            "in": "path",
+            "description": "paper Id.",
+            "required": true,
+            "type": "string"
+          }         
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/deleteQuestionFromPaper/{paperId}/{questionId}": {
+      "delete": {
+        "tags": [
+          "Paper"
+        ],
+        "summary": "Delete question from paper",
+        "description": "Delete question from paper",
+        "operationId": "deleteQuestionFromPaper",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "paperId",
+            "in": "path",
+            "description": "paper Id.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "questionId",
+            "in": "path",
+            "description": "Question to be deleted.",
+            "required": true,
+            "type": "string"
+          }          
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    }
+
+  },
+  "definitions": {
+    "register": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "updateStatus": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "otp": {
+          "type": "string"
+        }
+      }
+    },
+    "updateProfile": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "DOB": {
+          "type": "string"
+        }
+      }
+    },
+    "updateHomeAddress": {
+      "type": "object",
+      "properties": {
+        "Line_1": {
+          "type": "string"
+        },
+        "Line_2": {
+          "type": "string"
+        },
+        "Pincode": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        }
+      }
+    },
+    "updateOfficeAddress": {
+      "type": "object",
+      "properties": {
+        "Line_1": {
+          "type": "string"
+        },
+        "Line_2": {
+          "type": "string"
+        },
+        "Pincode": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        }
+      }
+    },
+    "addSkill": {
+      "type": "object",
+      "properties": {
+        "role": {
+          "type": "string"
+        },
+        "class": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "chapter": {
+          "type": "string"
+        },
+        "topic": {
+          "type": "string"
+        }
+      }
+    },
+    "updateSkill": {
+      "type": "object",
+      "properties": {
+        "role": {
+          "type": "string"
+        },
+        "class": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "chapter": {
+          "type": "string"
+        },
+        "topic": {
+          "type": "string"
+        }
+      }
+    },
+    "addQuestion": {
+      "type": "object",
+      "properties": {
+        "role": {
+          "type": "string"
+        },
+        "question": {
+          "type": "string"
+        },
+        "answer": {
+          "type": "string"
+        },
+        "class": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "chapter": {
+          "type": "string"
+        },
+        "topic": {
+          "type": "string"
+        },
+        "option_1": {
+          "type": "string"
+        },
+        "option_2": {
+          "type": "string"
+        },
+        "option_3": {
+          "type": "string"
+        },
+        "option_4": {
+          "type": "string"
+        },
+        "reference_1": {
+          "type": "string"
+        },
+        "reference_2": {
+          "type": "string"
+        },
+        "reference_3": {
+          "type": "string"
+        },
+        "reference_4": {
+          "type": "string"
+        }
+      }
+    },
+    "addPaper": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+          }
+        }
+  }
+}
