@@ -81,6 +81,14 @@ skill_set: [{
     },
     topic:{
         type: String
+    },
+    stats: {
+        attempted: {
+            type: String
+        },
+        correct: {
+            type: String
+        }
     }
 }],
 questions: {

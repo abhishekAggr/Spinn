@@ -21,16 +21,17 @@ router.get('/:userId/:questionId/:answer',(req,res)=>{
             if(err)
                 res.send('not');
             if(user) {
+               // user.skill_set.stats.attempted=0;
+               // console.log(user.skill_set.stats);
                 //check for answer
                 //correct answer
                 if(question.answer == answer)
                 {
-                    console.log('correct');
                     let i=0;
                     user.questions.correctQuestionId.push(questionId);
                     user.questions.wrongQuestionId.forEach(element => {
                         i++;
-                        console.log(i);
+                        //console.log(i);
                         if(element == questionId) {
                             user.questions.wrongQuestionId.splice(i-1,1);
                             console.log('deleted');

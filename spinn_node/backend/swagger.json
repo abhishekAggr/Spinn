@@ -1214,6 +1214,14 @@
         },
         "topic": {
           "type": "string"
+        },
+        "stats": {
+          "attempted": {
+            "type": "string"
+          },
+          "correct": {
+            "type": "string"
+          }
         }
       }
     },
