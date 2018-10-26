@@ -13,6 +13,8 @@ router.get('/:userId/:questionId/:skillId/:answer',(req,res)=>{
     let index = 0;
     let attempted = 0;
     let correctAttempted = 0;
+    let initialWrongAttempt = 1;
+    let wrongAttempt = 0;
     let correct = false;
     questionModel.findOne({_id:req.params.questionId},(err,question)=>{
         //Error
@@ -30,18 +32,22 @@ router.get('/:userId/:questionId/:skillId/:answer',(req,res)=>{
                 //correct answer
                 if(question.answer == answer)
                 {
-                    correctAttempted++;
-                    user.questions.correctQuestionId.push({
-                        questionId: questionId,
-                        attemptTime: moment()
-                    });
                     let i = 0;
                     // checking for wrong attempts
                     user.questions.wrongQuestionId.forEach(element => {
                         i++;
-                        if(element.questionId == questionId)
+                        if(element.questionId == questionId) {
+                            wrongAttempt = element.attemptNumber;
                             user.questions.wrongQuestionId.splice(i-1,1);
+                        }
                      });
+
+                    correctAttempted++;
+                    user.questions.correctQuestionId.push({
+                        questionId: questionId,
+                        attemptTime: moment(),
+                        wrongAttempts: wrongAttempt
+                    });
                     correct = true;
                 }
                 //wrong answer
@@ -49,15 +55,17 @@ router.get('/:userId/:questionId/:skillId/:answer',(req,res)=>{
                 {
                     let flag=0;
                     user.questions.wrongQuestionId.forEach(element => {
-                        if(element.questionId == questionId)
+                        if(element.questionId == questionId) {
                              flag=1;
+                             element.attemptNumber+=1;      //incrementing no. of wrong attempt toll
+                        }
                      });
                      if(!flag) {
                          user.questions.wrongQuestionId.push({
-                            questionId:questionId,
-                            attemptTime:moment(),
+                            questionId: questionId,
+                            attemptTime: moment(),
+                            attemptNumber: initialWrongAttempt     //wrong attempt
                          });
-                         //user.save();
                      }
                 }
                 let length = user.skill_set.length;

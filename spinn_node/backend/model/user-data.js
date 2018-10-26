@@ -98,6 +98,9 @@ questions: {
         },
         attemptTime: {
             type: Date
+        },
+        wrongAttempts: {
+            type: Number
         }
     }],
     wrongQuestionId:[{
@@ -106,6 +109,9 @@ questions: {
         },
         attemptTime: {
             type: Date
+        },
+        attemptNumber: {
+            type: Number
         }
     }]
 }
