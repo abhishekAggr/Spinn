@@ -730,7 +730,7 @@
         }
       }
     },
-    "/attemptQuestion/{userId}/{questionId}/{answer}": {
+    "/attemptQuestion/{userId}/{questionId}/{skillId}/{answer}": {
       "get": {
         "tags": [
           "Question"
@@ -754,6 +754,13 @@
             "name": "questionId",
             "in": "path",
             "description": "Question ID.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "skillId",
+            "in": "path",
+            "description": "Skill ID.",
             "required": true,
             "type": "string"
           },
@@ -828,7 +835,7 @@
           {
             "name": "userId",
             "in": "path",
-            "description": "User Id",
+            "description": "question to be removed.",
             "required": true,
             "type": "string"
           },
@@ -861,261 +868,7 @@
           }
         }
       }
-    },
-    "/editPaper/{paperId}": {
-      "put": {
-        "tags": [
-          "Paper"
-        ],
-        "summary": "Edit paper",
-        "description": "Edit paper",
-        "operationId": "editPaper",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "paperId",
-            "in": "path",
-            "description": "Paper Id",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "description": "Paper description",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/addPaper"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          },
-          "400": {
-            "description": "Bad request"
-          },
-          "404": {
-            "description": "Not found"
-          }
-        }
-      }
-    },
-    "/deletePaper/{paperId}": {
-      "delete": {
-        "tags": [
-          "Paper"
-        ],
-        "summary": "Delete Paper",
-        "description": "Delete Paper by Id",
-        "operationId": "deletePaper",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "paperId",
-            "in": "path",
-            "description": "paper to be deleted.",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          },
-          "400": {
-            "description": "Bad request"
-          },
-          "404": {
-            "description": "Not found"
-          }
-        }
-      }
-    },
-    "/listPaper": {
-      "get": {
-        "tags": [
-          "Paper"
-        ],
-        "summary": "View all the Papers",
-        "description": "View all the Papers",
-        "operationId": "viewPaper",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "Success"
-          },
-          "400": {
-            "description": "Bad request"
-          },
-          "404": {
-            "description": "Not found"
-          }
-        }
-      }
-    },
-    "/viewPaperById/{paperId}": {
-      "get": {
-        "tags": [
-          "Paper"
-        ],
-        "summary": "View Paper by Id",
-        "description": "View Paper by Id",
-        "operationId": "viewPaperById",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "paperId",
-            "in": "path",
-            "description": "paper to be viewed.",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          },
-          "400": {
-            "description": "Bad request"
-          },
-          "404": {
-            "description": "Not found"
-          }
-        }
-      }
-    },
-    "/addQuestionToPaper/{paperId}/{questionId}": {
-      "post": {
-        "tags": [
-          "Paper"
-        ],
-        "summary": "Add question to paper",
-        "description": "Add question to paper",
-        "operationId": "addQuestionToPaper",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "paperId",
-            "in": "path",
-            "description": "paper Id.",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "questionId",
-            "in": "path",
-            "description": "Question to be added.",
-            "required": true,
-            "type": "string"
-          }          
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          },
-          "400": {
-            "description": "Bad request"
-          },
-          "404": {
-            "description": "Not found"
-          }
-        }
-      }
-    },
-    "/listQuestionFromPaper/{paperId}": {
-      "get": {
-        "tags": [
-          "Paper"
-        ],
-        "summary": "List questions from paper",
-        "description": "List questions from paper",
-        "operationId": "listQuestionFromPaper",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "paperId",
-            "in": "path",
-            "description": "paper Id.",
-            "required": true,
-            "type": "string"
-          }         
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          },
-          "400": {
-            "description": "Bad request"
-          },
-          "404": {
-            "description": "Not found"
-          }
-        }
-      }
-    },
-    "/deleteQuestionFromPaper/{paperId}/{questionId}": {
-      "delete": {
-        "tags": [
-          "Paper"
-        ],
-        "summary": "Delete question from paper",
-        "description": "Delete question from paper",
-        "operationId": "deleteQuestionFromPaper",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "paperId",
-            "in": "path",
-            "description": "paper Id.",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "questionId",
-            "in": "path",
-            "description": "Question to be deleted.",
-            "required": true,
-            "type": "string"
-          }          
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          },
-          "400": {
-            "description": "Bad request"
-          },
-          "404": {
-            "description": "Not found"
-          }
-        }
-      }
     }
-
   },
   "definitions": {
     "register": {
@@ -1214,14 +967,6 @@
         },
         "topic": {
           "type": "string"
-        },
-        "stats": {
-          "attempted": {
-            "type": "string"
-          },
-          "correct": {
-            "type": "string"
-          }
         }
       }
     },
@@ -1298,10 +1043,17 @@
     "addPaper": {
       "type": "object",
       "properties": {
-        "name": {
+        "Name": {
           "type": "string"
-        }
+        },
+        "tags": {
+          "properties": {
+            "name": {
+              "type": "string"
+            }
           }
         }
+      }
+    }
   }
 }

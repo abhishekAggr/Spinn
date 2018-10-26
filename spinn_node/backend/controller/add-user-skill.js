@@ -18,6 +18,8 @@ router.post('/:userId',(req,res)=>{
             res.status(500).send('Internal server error');
         if(doc) {
         doc.skill_set.push(skillObj);
+        doc.skill_set[doc.skill_set.length-1].stats.attempted = 0;
+        doc.skill_set[doc.skill_set.length-1].stats.correct = 0;
         doc.save();
         res.status(200).send('skill added successfully'); 
         }

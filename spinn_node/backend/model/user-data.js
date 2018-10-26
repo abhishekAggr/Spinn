@@ -82,21 +82,31 @@ skill_set: [{
     topic:{
         type: String
     },
-    stats: {
+    stats:{
         attempted: {
-            type: String
+            type: Number
         },
         correct: {
-            type: String
+            type: Number
         }
     }
 }],
 questions: {
     correctQuestionId: [{
-        type: String
+        questionId: {
+            type: String
+        },
+        attemptTime: {
+            type: Date
+        }
     }],
     wrongQuestionId:[{
-        type: String
+        questionId: {
+            type: String
+        },
+        attemptTime: {
+            type: Date
+        }
     }]
 }
 });

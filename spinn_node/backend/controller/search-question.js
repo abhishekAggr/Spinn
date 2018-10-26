@@ -21,27 +21,19 @@ router.get('/:userId/:skillId',(req,res)=>{
                     let query = library.validQuery(element);
                     found = true;
                     questionModel.find((query),(err,result)=>{
-                        // if(err)
-                        //     res.status(500).send('Internal server error');
+                        // Questions found
                         if(result) {
-                            //console.log(result);
                             let finalResult = [];
-                            for(let i=0;i<result.length;i++) 
-                            {
-                                let qid = result[i]._id;
-                                let flag=1;
-                                for(let j=0;j<userDoc.questions.correctQuestionId.length;j++)
-                                {
-                                    userCorrectQuestions[userDoc.questions.correctQuestionId[j]] = true;
-                                    if(JSON.stringify(qid) == JSON.stringify(userDoc.questions.correctQuestionId[j])) {
-                                        flag=0;
-                                        break;
-                                    } 
-                                }
-                                if(flag)
-                                    finalResult.push(result[i]);
+                            let length = userDoc.questions.correctQuestionId.length;
+                            // Marking correct answers
+                            for(let i=0;i<length;i++) {
+                                userCorrectQuestions[userDoc.questions.correctQuestionId[i].questionId]=true;
                             }
-                            console.log(userCorrectQuestions);
+                            // Ruling out correct answers
+                            for(let j=0;j<result.length;j++) {
+                                if(!userCorrectQuestions[result[j]._id])
+                                    finalResult.push(result[j]);
+                            }
                             res.status(200).send(finalResult);
                         }
                         if(!result)
@@ -59,4 +51,3 @@ router.get('/:userId/:skillId',(req,res)=>{
 });
 
 module.exports = router;
-// 

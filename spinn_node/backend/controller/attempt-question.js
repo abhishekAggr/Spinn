@@ -4,11 +4,16 @@ var router = express.Router();
 var app = express();
 var userModel  = require('../model/user-data');
 var questionModel = require('../model/question-data');
-
-router.get('/:userId/:questionId/:answer',(req,res)=>{
+var moment = require('moment');
+router.get('/:userId/:questionId/:skillId/:answer',(req,res)=>{
     const userId = req.params.userId;
     const questionId = req.params.questionId;
+    const skillId = req.params.skillId;
     const answer = req.params.answer;
+    let index = 0;
+    let attempted = 0;
+    let correctAttempted = 0;
+    let correct = false;
     questionModel.findOne({_id:req.params.questionId},(err,question)=>{
         //Error
         if(err)
@@ -19,52 +24,64 @@ router.get('/:userId/:questionId/:answer',(req,res)=>{
             userModel.findOne({userId:userId},(err,user)=>{
             // if user exists
             if(err)
-                res.send('not');
+                res.status(500).send('Internal server Error');
             if(user) {
-               // user.skill_set.stats.attempted=0;
-               // console.log(user.skill_set.stats);
-                //check for answer
+                attempted++;
                 //correct answer
                 if(question.answer == answer)
                 {
-                    let i=0;
-                    user.questions.correctQuestionId.push(questionId);
+                    correctAttempted++;
+                    user.questions.correctQuestionId.push({
+                        questionId: questionId,
+                        attemptTime: moment()
+                    });
+                    let i = 0;
+                    // checking for wrong attempts
                     user.questions.wrongQuestionId.forEach(element => {
                         i++;
-                        //console.log(i);
-                        if(element == questionId) {
+                        if(element.questionId == questionId)
                             user.questions.wrongQuestionId.splice(i-1,1);
-                            console.log('deleted');
-                        }
                      });
-                    user.save();
-                    res.status(200).send('Congrats correct answer');
+                    correct = true;
                 }
                 //wrong answer
                 else
                 {
                     let flag=0;
                     user.questions.wrongQuestionId.forEach(element => {
-                        if(element == questionId)
+                        if(element.questionId == questionId)
                              flag=1;
                      });
                      if(!flag) {
-                         user.questions.wrongQuestionId.push(req.params.questionId);
-                         user.save();
+                         user.questions.wrongQuestionId.push({
+                            questionId:questionId,
+                            attemptTime:moment(),
+                         });
+                         //user.save();
                      }
-                     res.status(200).send('Oops Wrong answer');
                 }
+                let length = user.skill_set.length;
+                while(index<length) {
+                    if(user.skill_set[index]._id == skillId)
+                    {
+                        user.skill_set[index].stats.attempted+=1;
+                        if(correct)
+                            user.skill_set[index].stats.correct+=1;
+                    }
+                    index++;
+                }
+                user.save();
+                if(correct)
+                    res.status(200).send('Congrats correct answer');
+                else
+                    res.status(200).send('Oops Wrong answer');
             }
-
-            // //user not found
+            //user not found
             if(!user)
                  res.status(404).send('User not found');
             });
         
         }
-        //question not found
-        // else 
-        //     res.status(404).send('Question not found');
     });
 });
        
