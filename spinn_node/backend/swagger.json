@@ -730,6 +730,40 @@
         }
       }
     },
+    "/listQuestion/{userId}": {
+      "get": {
+        "tags": [
+          "Question"
+        ],
+        "summary": "List all questions",
+        "description": "List all questions.",
+        "operationId": "listQuestion",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User ID.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
     "/attemptQuestion/{userId}/{questionId}/{skillId}/{answer}": {
       "get": {
         "tags": [
